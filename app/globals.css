@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --border: 214.3 31.8% 91.4%;
+
+  --accent: #7c3aed;
+  --accent-2: #06b6d4;
+}
+
+html.accent-violet  { --accent: #7c3aed; --accent-2: #06b6d4; }
+html.accent-emerald { --accent: #059669; --accent-2: #14b8a6; }
+html.accent-rose    { --accent: #e11d48; --accent-2: #f59e0b; }
+html.accent-amber   { --accent: #d97706; --accent-2: #f43f5e; }
+html.accent-cyan    { --accent: #0891b2; --accent-2: #6366f1; }
+html.accent-slate   { --accent: #334155; --accent-2: #64748b; }
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --border: 217.2 32.6% 17.5%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+@layer utilities {
+  .container-pad {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass {
+    background: color-mix(in hsl, hsl(var(--background)) 85%, transparent);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(14px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-blob {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 9999px;
+  filter: blur(80px);
+}
+.hero-blob-1 {
+  top: -96px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 35%, transparent),
+    transparent 70%
+  );
+}
+.hero-blob-2 {
+  bottom: -96px;
+  right: -120px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent-2) 30%, transparent),
+    transparent 70%
+  );
+}
+
+/* ========== TEMPLATES ========== */
+
+/* Minimal: clean typographic, no blobs, subtle accent */
+html.template-minimal .bg-blobs {
+  display: none;
+}
+html.template-minimal .text-gradient {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+html.template-minimal h1,
+html.template-minimal h2 {
+  letter-spacing: -0.04em;
+}
+html.template-minimal .glass {
+  background: hsl(var(--background));
+  backdrop-filter: none;
+}
+
+/* Classic: serif, paper feel, square corners */
+html.template-classic body {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, 'Times New Roman', serif;
+}
+html.template-classic .bg-blobs {
+  display: none;
+}
+html.template-classic .text-gradient {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+html.template-classic .rounded-2xl,
+html.template-classic .rounded-3xl {
+  border-radius: 0.25rem !important;
+}
+html.template-classic .rounded-xl {
+  border-radius: 0.2rem !important;
+}
+html.template-classic .rounded-full {
+  border-radius: 0.25rem !important;
+}
+html.template-classic .glass {
+  background: hsl(var(--background));
+  backdrop-filter: none;
+}
+
+/* Bold: chunky, large type, strong accent */
+html.template-bold h1 {
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  line-height: 1.02;
+  font-weight: 800;
+}
+html.template-bold h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+}
+html.template-bold .rounded-xl {
+  border-radius: 1rem !important;
+}
+html.template-bold .rounded-2xl {
+  border-radius: 1.5rem !important;
+}
+html.template-bold .hero-blob {
+  width: 720px;
+  height: 720px;
+  filter: blur(100px);
+}
+
+@media print {
+  header,
+  footer,
+  .glass,
+  [aria-label='Toggle theme'] {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .text-gradient {
+    background: none !important;
+    -webkit-text-fill-color: #000 !important;
+    color: #000 !important;
+  }
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+}
