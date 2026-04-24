@@ -3,6 +3,8 @@ import { Section } from '@/components/Section';
 import { ProjectCard } from '@/components/ProjectCard';
 import { Footer } from '@/components/Footer';
 import { Customizer } from '@/components/Customizer';
+import { SocialRow } from '@/components/SocialRow';
+import { Reveal } from '@/components/Reveal';
 import { Download } from 'lucide-react';
 
 import {
@@ -25,6 +27,7 @@ export default function Page() {
 
       <Navbar />
       <Customizer />
+      <Reveal />
 
       <main>
         <section className="container-pad pb-10 pt-16 sm:pb-14 sm:pt-20">
@@ -67,8 +70,12 @@ export default function Page() {
                 </a>
               </div>
 
-              <div className="mt-6 text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">Location:</span> {profile.location}
+              <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground">Location:</span>{' '}
+                  {profile.location}
+                </div>
+                <SocialRow />
               </div>
             </div>
 

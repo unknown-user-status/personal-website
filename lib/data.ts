@@ -12,6 +12,13 @@ export const profile = {
   email: 'dani.janw@example.com'
 };
 
+export const socials = {
+  github: 'https://github.com/unknown-user-status',
+  linkedin: 'https://www.linkedin.com/in/',
+  twitter: 'https://x.com/',
+  email: 'mailto:dani.janw@example.com'
+};
+
 export const projects: Project[] = [
   {
     title: 'StudyLoop',

@@ -14,7 +14,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={clsx('py-16 sm:py-20', className)}>
+    <section id={id} className={clsx('py-16 sm:py-20', className)} data-reveal>
       <div className="container-pad">
         <div className="mb-10">
           {eyebrow ? (
