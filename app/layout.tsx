@@ -4,8 +4,8 @@ import { ThemeProvider } from 'next-themes';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'dani Janw',
-  description: 'Personal website of dani Janw'
+  title: 'dani Janw — Portfolio',
+  description: 'CS student & web developer. Projects, skills, and resume.'
 };
 
 export default function RootLayout({
